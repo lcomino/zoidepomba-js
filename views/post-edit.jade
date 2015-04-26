@@ -1,0 +1,26 @@
+extends layout
+
+block mainContent
+      article.post.span        
+        h1 Manutenção posts    
+        form(name="post-edit", action="/post", method="post")
+          .form-group
+            label Titulo
+            input(type="text", name="title", value=title)            
+          .form-group
+            label Link
+            input(type="text", name="permalink", value=permalink)
+            span=errorPermalink
+          .form-group
+            label Resumo
+            input(type="text", name="excerpt", value=excerpt)
+          .form-group
+            label Conteudo
+            textarea(name="content")=content
+          .form-group
+            label Categorias (Separado por virgula)
+            input(type="text", name="categories", value=categories)
+          .form-group
+            label Tags (Separado por virgula)
+            input(type="text", name="tags", value=tags)
+          input.btn.btn-primary(type="submit", name="Salvar", value="Salvar")

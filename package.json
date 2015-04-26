@@ -1,0 +1,20 @@
+{
+  "name": "zoidepomba.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@lcomino",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.3",
+    "jade": "^1.9.2",
+    "marked": "^0.3.3"
+  },
+  "devDependencies": {
+    "body-parser": "^1.12.3",
+    "mongoose": "^4.0.1"
+  }
+}

@@ -1,0 +1,20 @@
+extends layout
+
+block mainContent
+    each post in posts
+      article.post.span
+        .row
+          header.post-topo.span
+            .data-social
+              .row
+                .data-post.span 23/23/2023
+            .post-titulo
+              a(href="/post/#{post.permalink}")
+                h1= post.title
+          .row            
+            .post-conteudo.span
+              != post.excerpt
+              p
+                a(href='/post/#{post.permalink}') Continue lendo
+            
+        

@@ -1,0 +1,18 @@
+extends layout
+
+block mainContent
+    article.post.span
+      .row
+        header.post-topo.span
+          .data-social
+            .row
+              .data-post.span
+          .post-titulo
+            a
+              h1=title
+        .row
+          .post-conteudo.span
+            =excerpt
+            !=content
+            
+        
