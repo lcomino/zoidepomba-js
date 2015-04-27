@@ -2,19 +2,19 @@ extends layout
 
 block mainContent
     each post in posts
-      article.post.span
+      article.post.col-md-6
         .row
-          header.post-topo.span
+          header.post-topo.col-md-12
             .data-social
               .row
-                .data-post.span 23/23/2023
+                .data-post.col-md-4 23/23/2023
             .post-titulo
               a(href="/post/#{post.permalink}")
                 h1= post.title
-          .row            
-            .post-conteudo.span
-              != post.excerpt
-              p
-                a(href='/post/#{post.permalink}') Continue lendo
+        .row            
+          .post-conteudo.col-md-12
+            != post.excerpt
+            p
+              a(href='/post/#{post.permalink}') Continue lendo
             
         

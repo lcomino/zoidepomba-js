@@ -37,7 +37,7 @@ app.get('/', function(req, res){
 
   Post.find({}, function(err, posts){
     res.render('home', { posts : posts });
-  });
+  }).sort({'_id': -1});
 });
 
 app.get('/post-edit', function(req, res){
