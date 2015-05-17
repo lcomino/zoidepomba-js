@@ -8,7 +8,7 @@ var fs = require('fs');
 var marked = require('marked');
 var app = express();
 
-mongoose.connect('mongodb://localhost/zoidepomba');
+mongoose.connect('mongodb://localhost/zoidepomb_db');
 
 var db = mongoose.connection;
 
