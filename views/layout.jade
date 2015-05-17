@@ -1,86 +1,90 @@
 doctype html
 html(lang="pt-br")
-    head        
-        meta(charset="utf-8")
-        meta(name='viewport', content='width=device-width')
-        meta(name='google-site-verification', content='U5r7abgjr8OKDoCoGD9XpR1mdIK9Il41wtAIvi9tA8M')
-        meta(property='fb:admins', content='lcomino')
-        meta(property='fb:app_id', content='358682717598728')
-        title Zoidepomba.com.br - #{title}        
-        link(rel='profile', href='http://gmpg.org/xfn/11')        
-        link(rel='stylesheet', type='text/css', media='all', href="http://www.zoidepomba.com.br/wp-content/themes/zoidepomba/assets/css/bootstrap.min.css")
-        link(rel='stylesheet', type='text/css', media='all', href="/css/main.css")       
+	head
+		title Zoidepomba.com.br - #{title}			
+		meta(http-equiv='content-type',content='text/html; charset=utf-8')
+		meta(name='description', content='')
+		meta(name='keywords',content='')
+		
+		link(rel="stylesheet", href="/css/animate.css")
+		
+		script(src='/js/jquery.min.js')
+		script(src='/js/jquery.dropotron.min.js')
+		script(src='/js/skel.min.js')
+		script(src='/js/skel-layers.min.js')
+		script(src='/js/init.js')
+		
+		noscript
+			link(rel='stylesheet', href='/css/skel.css')
+			link(rel='stylesheet', href='/css/style.css')
+			link(rel='stylesheet', href='/css/style-desktop.css')
 
-body.zp
+body.homepage
+		#header-wrapper
+			#header
+				.container
+					.row
+						.6u							
+							h1
+								a(href="/")
+									img(src="/images/logo-horizontal.png", alt="Zoidepomba - Voltar página inicial")
+						.6u
+							a.propaganda(href='http://www.vitrinepix.com.br/zoidepomba/', target='_blank', data-banner-posicao='banner-anuncio-topo', data-cliente='CamisetasZoidepomba', title='Novas camisetas do Zoidepomba, compre já a sua!!')
+								img(alt='Novas camisetas do Zoidepomba, compre já a sua!!', title='Novas camisetas do Zoidepomba, compre já a sua!!', src='http://ad.zoidepomba.com.br/banner_728_novas-camisetas.gif')
+				nav#nav
+					ul
+						li.current
+							a(href="/") HOME
+						li
+							a(href="/categoria/videos") VÍDEOS
+						li
+							a(href="/categoria/wtf") WTF
+						li
+							a(href="/categoria/lol") LOL
+						li
+							a(href="/categoria/nsfw") NSFW
+						li
+							a(href="/assine") ASSINE
+						li
+							a(href="/contato") CONTATO
+						li
+							input(type="text", name="buscar", placeholder="Busque aqui...")
+				
+				block bannerContent
 
-  header.topo
-    nav.nav-topo.navbar.navbar-inverse.hidden-sm.hidden-xs
-      .container
-        ul.nav.navbar-nav.navbar-right
-          li
-            a.link-destaque(href="/sugestao-post") Sugestão de post
-          li
-            a.link-destaque(href="/assine") Assine nosso FEED
-    .logo-topo
-      .container        
-        .col-md-4.col-xs-12.col-sm-12.logo
-          a(href="/", title="Zoidepomba")
-            img(src='/images/logo_topo.png')
-        .col-md-8.hidden-sm.hidden-xs
-          a.propaganda(href='http://www.vitrinepix.com.br/zoidepomba/', target='_blank', data-banner-posicao='banner-anuncio-topo', data-cliente='CamisetasZoidepomba', title='Novas camisetas do Zoidepomba, compre já a sua!!')
-            img(alt='Novas camisetas do Zoidepomba, compre já a sua!!', title='Novas camisetas do Zoidepomba, compre já a sua!!', src='http://ad.zoidepomba.com.br/banner_728_novas-camisetas.gif')
-  
-    .menu-categorias.navbar.navbar-default
-      .container        
-        .navbar-header
-          button.navbar-toggle.collapsed(data-toggle="collapse", data-target="#bs-example-navbar-collapse-1")
-            span.sr-only Visualizar menu
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar          
-        .row
-          #bs-example-navbar-collapse-1.col-md-8.collapse.navbar-collapse
-            ul.nav.navbar-nav
-              li
-                a(href="/") Home
-              li
-                a(href="/loja") Novidades
-              li
-                a(href="/sobre") Humor
-              li
-                a(href="/sobre") NSWF
-              li
-                a(href="/sobre") Tirinhas
-          //.col-md-4
-          //  form.form-inline.pull-right
-          //    input.form-control(type="text",name="txt-buscar")
-          //    input.btn.btn-default(type="submit",name="buscar", value="Buscar")
-  .container
-    .row
-      .conteudo-principal.col-md-12
-        .row
-          .col-md-8
-            block mainContent
-          .sidebar.col-md-4
-  
-  script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
-  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
-              
-
-              
-  
-    //#sidebar.span
-    //  .box-sidebar
-    //    .titulo-sidebar
-    //      span.icon-titulo-sidebar
-    //      h2 @ZoidepombaReal
-    //      span.border-right
-    //    .conteudo-box-sidebar
-    //      p N&atilde;o perca mais nenhum post novo do Zoidepomba! Siga agente no twitter!
-    //      iframe.twitter-follow-button(allowtransparency='true', frameborder='0', scrolling='no', src='http://platform.twitter.com/widgets/follow_button.1347008535.html#_=1351695728156&id=twitter-widget-9&lang=pt&screen_name=zoidepombareal&show_count=false&show_screen_name=true&size=l', style='width: 154px; height: 28px;', title='Twitter Follow Button', data-twttr-rendered='true')
-    //      .fb-like-box.fb_iframe_widget(data-href='http://www.facebook.com/zoidepomba', data-width='270', data-show-faces='false', data-stream='false', data-header='true', fb-xfbml-state='rendered', fb-iframe-plugin-query='app_id=109555579168404&container_width=300&header=true&href=http%3A%2F%2Fwww.facebook.com%2Fzoidepomba&locale=pt_BR&sdk=joey&show_faces=false&stream=false&width=270')
-    //        span(style='vertical-align: bottom; width: 270px; height: 70px;')
-    //      iframe(name='f19da6a268', width='270px', height='1000px', frameborder='0', allowtransparency='true', scrolling='no', title='fb:like_box Facebook Social Plugin', src='http://www.facebook.com/plugins/like_box.php?app_id=109555579168404&channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2F6Dg4oLkBbYq.js%3Fversion%3D41%23cb%3Df9573efa4%26domain%3Dwww.zoidepomba.com.br%26origin%3Dhttp%253A%252F%252Fwww.zoidepomba.com.br%252Ff239d8e728%26relation%3Dparent.parent&container_width=300&header=true&href=http%3A%2F%2Fwww.facebook.com%2Fzoidepomba&locale=pt_BR&sdk=joey&show_faces=false&stream=false&width=270', style='border: none; visibility: visible; width: 270px; height: 70px;')
-  
-
-  
+		div#main-wrapper			
+			block mainContent			
+		div#footer-wrapper
+			section#footer.container
+				div.row
+					div.8u
+						section
+							header
+								h2 Aleatório :)
+							ul.dates
+								each post in [1]
+									li
+										span.date Jan 12
+										h3
+											a(href="#") Lorem dolor sit amet veroeros
+											p Ipsum dolor sit amet veroeros consequat blandit ipsum phasellus lorem consequat etiam.
+					div.4u
+						section
+							header
+								h2 Redes sociais
+							ul.social
+								li
+									a(href="#").icon.fa-facebook
+										spam.label Facebook
+								li
+									a(href="#").icon.fa-twitter
+										spam.label Twitter
+				.row
+					.12u
+						// Copyright
+						#copyright
+							ul.links
+								li &copy; Zoidepomba.com.br. Todos os direitos reservados.
+								li Baseado em um dos temas 
+									a(href='http://html5up.net') HTML5 UP
+								li Totalmente concebido com JS

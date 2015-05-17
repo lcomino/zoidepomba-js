@@ -1,20 +1,72 @@
 extends layout
-
+block bannerContent
+  section#banner(style="background:url('#{ultimopost.image}')")
+    header						
+      h2
+        a(href="/post/#{ultimopost.permalink}")= ultimopost.title
+      p
+        a(href="/post/#{ultimopost.permalink}")= ultimopost.excerpt
 block mainContent
-    each post in posts
-      article.post.col-md-6
-        .row
-          header.post-topo.col-md-12
-            .data-social
-              .row
-                .data-post.col-md-4 23/23/2023
-            .post-titulo
-              a(href="/post/#{post.permalink}")
-                h1= post.title
-        .row            
-          .post-conteudo.col-md-12
-            != post.excerpt
-            p
-              a(href='/post/#{post.permalink}') Continue lendo
-            
-        
+  div.container
+    div.row
+      div.12u
+        section
+          div.row
+            each post in ultimosposts    
+              div.6u
+                section.box.animated.fadeIn                  
+                  a(href="/post/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured                  
+                  header
+                    h3= post.title
+                    p Posted at...
+                  //p= post.excerpt
+                  footer
+                    ul.actions
+                      li
+                        a(href="/post/#{post.permalink}").button.icon.fa-file.text Post completo
+                      li
+                        a(href="").button.alt.icon.fa-comment 33 comentários                  
+          div.row
+            div.12u
+              script(type='text/javascript').
+                bb_bid = "1619206";
+                bb_lang = "pt-BR";
+                bb_name = "custom";
+                bb_limit = "8";
+                bb_format = "bbb";
+              script(type='text/javascript', src='http://static.boo-box.com/javascripts/embed.js')
+
+          div.row
+            div.12u
+              section
+                div.row
+                  each post in outrosposts
+                    div.4u
+                      section.box.animated.fadeIn
+                        a(href="/post/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured 
+                        header
+                          h3= post.title
+                          p Posted at
+                        footer
+                          a(href="/post/#{post.permalink}").buttom.alt Post Completo
+          
+          div.row
+            div.12u
+              script(type='text/javascript').
+                bb_bid = "1619206";
+                bb_lang = "pt-BR";
+                bb_name = "custom";
+                bb_limit = "8";
+                bb_format = "bbb";
+              script(type='text/javascript', src='http://static.boo-box.com/javascripts/embed.js')
+          
+          div.row
+            div.12u                            
+              ul.paginacao
+                - var n = 1            
+                p=paginaAtual    
+                while n < totalPages
+                  li
+                    if n != paginaAtual
+                      a(href="/page/#{n}")= n
+                    - n++

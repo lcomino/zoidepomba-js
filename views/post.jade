@@ -1,18 +1,24 @@
 extends layout
 
 block mainContent
-    article.post.span
-      .row
-        header.post-topo.span
-          .data-social
-            .row
-              .data-post.span
-          .post-titulo
-            a
-              h1=title
-        .row
-          .post-conteudo.span
-            =excerpt
+    div.container
+      //sidebar
+      div.row        
+        div.8u.important(collapse)
+          article.box.post
+            a(href="").image.featured
+              img(src=image, alt=title)
+            header
+              h2=title
+              =excerpt
             !=content
-            
-        
+              
+        div.4u
+          section.box
+            a(href="#").image.featured 
+              img(src="/images/pic09/jpg", alt="")
+            header
+              h3 Sed etian lotem nulla
+            p Lorem ipsum dolor sit amet sit veroeros sed amet blandit consequat veroeros lorem blandit  adipiscing et feugiat phasellus tempus dolore ipsum lorem dolore.
+            footer
+              a.button.alt(href='#') Magna sed taciti

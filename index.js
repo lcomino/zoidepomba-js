@@ -34,10 +34,25 @@ app.set('view options', {
 });
 
 app.get('/', function(req, res){
+  Posts(res, 9, 0);
+});
 
+function Posts(res, limit, skip){
   Post.find({}, function(err, posts){
-    res.render('home', { posts : posts });
-  }).sort({'_id': -1});
+
+    var ultimopost = posts.slice(0,1);
+    var ultimosposts = posts.slice(1,3);
+    var outrosposts = posts.slice(3);
+    Post.count().exec(function(err, count){
+      res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : count/limit, paginaAtual : skip+1 });
+    });
+  }).sort({'_id': -1}).limit(limit).skip(skip);
+}
+
+app.get('/page/:pagenumber', function(req, res){
+  var page = req.params.pagenumber;
+  page--;
+  Posts(res, 9, page * 9);
 });
 
 app.get('/post-edit', function(req, res){
@@ -48,7 +63,8 @@ app.get('/post-edit', function(req, res){
       content: '',
       excerpt : '',
       tags : '',
-      categories : ''
+      categories : '',
+      image : ''
   }
   res.render('post-edit', postData);
 });
@@ -62,7 +78,8 @@ app.get('/post-edit/:permalink', function(req, res){
       content: '',
       excerpt : '',
       tags : '',
-      categories : ''
+      categories : '',
+      image : ''
   }
 
   if(id != ""){
@@ -77,6 +94,7 @@ app.get('/post-edit/:permalink', function(req, res){
             postData.excerpt = p.excerpt;
             postData.tags = p.tags.join(',');
             postData.categories = p.categories.join(',');
+            postData.image = p.image;
             res.render('post-edit', postData);
           }else{
             res.render('404');
@@ -96,7 +114,8 @@ app.get('/post/:permalink', function(req, res){
       content: '',
       excerpt : '',
       tags : '',
-      categories : ''
+      categories : '',
+      image : ''
   }
 
   if(id != ""){
@@ -113,6 +132,7 @@ app.get('/post/:permalink', function(req, res){
           postData.excerpt = p.excerpt;
           postData.tags = p.tags.join(',');
           postData.categories = p.categories.join(',');
+          postData.image = p.image;
 
           res.render('post', postData);
         }else{
@@ -132,7 +152,8 @@ app.post('/post', function(req, res){
           content: '',
           excerpt : '',
           tags : '',
-          categories : ''
+          categories : '',
+          image : ''
       };
 
   postData.title = req.body.title;
@@ -141,6 +162,7 @@ app.post('/post', function(req, res){
   postData.excerpt = req.body.excerpt;
   postData.tags = req.body.tags.split(',');
   postData.categories = req.body.categories.split(',');
+  postData.image = req.body.image;
 
   if(postData.permalink == ''){
      postData.errorPermalink = 'Preencha o permalink...';
@@ -162,6 +184,7 @@ app.post('/post', function(req, res){
           p.excerpt = postData.excerpt;
           p.tags = postData.tags.join(',');
           p.categories = postData.categories.join(',');
+          p.image = postData.image;
 
           p.save(function(err){
             if(err)throw err;
@@ -170,13 +193,14 @@ app.post('/post', function(req, res){
 
         }else{
 
-          var post = new Post({
+          var post = new Post ({
             title : req.body.title,
             permalink : req.body.permalink,
             content: req.body.content,
             excerpt : req.body.excerpt,
             tags : req.body.tags.split(','),
-            categories : req.body.categories.split(',')
+            categories : req.body.categories.split(','),
+            image : req.body.image
           });
 
           post.save(function(err){

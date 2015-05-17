@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 var fields = {
   title : {type : String},
   excerpt : {type : String},
+  image : {type : String},
   content : {type : String},
   tags : {type : []},
   categories : {type : []},
