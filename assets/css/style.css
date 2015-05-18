@@ -15,7 +15,7 @@
 	body
 	{
 		background: #252122;
-		background-image: url('images/bg02.png');
+		background-image: url('../images/pattern-footer.png');
 	}
 
 		body.is-loading * {
@@ -303,6 +303,9 @@
 			.box header{
 				display:block;
 				min-height:110px;
+			}
+			.box.sidebar header{
+				min-height:20px;
 			}
 
 	/* Button */
@@ -740,7 +743,7 @@
 	#main-wrapper
 	{
 		position: relative;
-		background: #f7f7f7 url('../images/bg-pattern.png');
+		background: #f7f7f7 url('../images/pattern.png');
 		background-size:250px;
 	}
 

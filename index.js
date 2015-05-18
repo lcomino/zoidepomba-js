@@ -33,7 +33,7 @@ app.set('view options', {
     layout: false
 });
 
-app.get('/', function(req, res){
+app.get('/', function(req, res){  
   Posts(res, 9, 0);
 });
 
@@ -85,6 +85,7 @@ app.get('/post-edit/:permalink', function(req, res){
   if(id != ""){
       Post.find({permalink : id}, function(err, post){
           if(err)throw err;
+          postAleatorio();
           if(post.length > 0){
             var p = post[0];
 
