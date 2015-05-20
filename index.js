@@ -8,7 +8,7 @@ var fs = require('fs');
 var marked = require('marked');
 var app = express();
 
-mongoose.connect('mongodb://localhost/zoidepomb_db');
+mongoose.connect('mongodb://127.0.0.1/zoidepomb_db');
 
 var db = mongoose.connection;
 
@@ -38,11 +38,16 @@ app.get('/', function(req, res){
 });
 
 function Posts(res, limit, skip){
-  Post.find({}, function(err, posts){
+  Post.find({}, function(err, posts){    
+    var ultimopost = [],
+        ultimosposts = [],
+        outrosposts = [];
+    if(posts.length == 0)
+      posts = [Post];
 
-    var ultimopost = posts.slice(0,1);
-    var ultimosposts = posts.slice(1,3);
-    var outrosposts = posts.slice(3);
+    ultimopost = posts.slice(0,1);
+    ultimosposts = posts.slice(1,3);
+    outrosposts = posts.slice(3);
     Post.count().exec(function(err, count){
       res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : count/limit, paginaAtual : skip+1 });
     });
