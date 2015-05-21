@@ -1,7 +1,5 @@
-"use strict";
-
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var http = require('http');
 var fs = require('fs');
@@ -38,7 +36,7 @@ app.get('/', function(req, res){
 });
 
 function Posts(res, limit, skip){
-  
+  "use strict";
   Post.find({}, function(err, posts){
 
     var ultimopost = [],
@@ -78,7 +76,8 @@ app.get('/post-edit', function(req, res){
       tags : '',
       categories : '',
       image : ''
-  }
+  };
+
   res.render('post-edit', postData);
 });
 
@@ -93,12 +92,11 @@ app.get('/post-edit/:permalink', function(req, res){
       tags : '',
       categories : '',
       image : ''
-  }
+  };
 
-  if(id != ""){
+  if(id !== ""){
       Post.find({permalink : id}, function(err, post){
           if(err)throw err;
-          postAleatorio();
           if(post.length > 0){
             var p = post[0];
 
@@ -130,9 +128,9 @@ app.get('/post/:permalink', function(req, res){
       tags : '',
       categories : '',
       image : ''
-  }
+  };
 
-  if(id != ""){
+  if(id !== ""){
       Post.find({permalink : id}, function(err, post){
           if(err)throw err;
 
@@ -178,11 +176,11 @@ app.post('/post', function(req, res){
   postData.categories = req.body.categories.split(',');
   postData.image = req.body.image;
 
-  if(postData.permalink == ''){
+  if(postData.permalink === ''){
      postData.errorPermalink = 'Preencha o permalink...';
   }
 
-  if(postData.permalink != ''){
+  if(postData.permalink !== ''){
 
     Post.find({permalink : postData.permalink}, function(err, post){
 
@@ -202,12 +200,11 @@ app.post('/post', function(req, res){
 
           p.save(function(err){
             if(err)throw err;
-            console.log('Post atualizado com sucesso');
           });
 
         }else{
 
-          var post = new Post ({
+          post = new Post ({
             title : req.body.title,
             permalink : req.body.permalink,
             content: req.body.content,
@@ -231,16 +228,9 @@ app.post('/post', function(req, res){
 
 app.get('/contact', function(req, res){
   res.render('contact', {
-      title: 'Hey Contact',
-      content: 'Hello there, layout Contact!! Pages!!!!'
+      title: 'Contato!',
+      content: 'Olá!! Entre em contato... agora não pq não dá mas logo logo...'
     });
 });
 
 http.createServer(app).listen(3000);
-
-/*var server = app.listen(3000, function(){
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log("Running on  port http://%s:%s",host, port);
-});*/
