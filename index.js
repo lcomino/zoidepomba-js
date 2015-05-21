@@ -33,25 +33,33 @@ app.set('view options', {
     layout: false
 });
 
-app.get('/', function(req, res){  
+app.get('/', function(req, res){
   Posts(res, 9, 0);
 });
 
 function Posts(res, limit, skip){
-  Post.find({}, function(err, posts){    
+  
+  Post.find({}, function(err, posts){
+
     var ultimopost = [],
         ultimosposts = [],
-        outrosposts = [];
-    if(posts.length == 0)
+        outrosposts = [],
+        numeroPosts = 0;
+
+    if(posts.length === 0)
       posts = [Post];
 
     ultimopost = posts.slice(0,1);
     ultimosposts = posts.slice(1,3);
     outrosposts = posts.slice(3);
+
     Post.count().exec(function(err, count){
-      res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : count/limit, paginaAtual : skip+1 });
+        numeroPosts = count;
+        res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : skip+1 });
     });
+
   }).sort({'_id': -1}).limit(limit).skip(skip);
+
 }
 
 app.get('/page/:pagenumber', function(req, res){
