@@ -63,10 +63,11 @@ block mainContent
           div.row
             div.12u                            
               ul.paginacao
-                - var n = 1            
-                p=paginaAtual    
+                - var n = 1                                            
                 while n < totalPages
                   li
                     if n != paginaAtual
                       a(href="/page/#{n}")= n
+                    else
+                      a(href="/page/#{n}", onclick="return false;").disabled= n
                     - n++

@@ -53,7 +53,7 @@ function Posts(res, limit, skip){
 
     Post.count().exec(function(err, count){
         numeroPosts = count;
-        res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : skip+1 });
+        res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : (skip/9)+1 });
     });
 
   }).sort({'_id': -1}).limit(limit).skip(skip);
