@@ -121,6 +121,11 @@ app.get('/post-edit/:permalink', function(req, res){
 
 });
 
+app.delete('/post/:permalink', function(req, res){
+  var id = req.params.permalink;
+  Post.find({permalink : id}).remove().exec();
+});
+
 app.get('/post/:permalink', function(req, res){
 
   var id = req.params.permalink;
