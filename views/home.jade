@@ -17,15 +17,14 @@ block mainContent
                 section.box.animated.fadeIn                  
                   a(href="/post/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured                  
                   header
-                    h3= post.title
-                    p Posted at...
+                    h3= post.title                    
                   //p= post.excerpt
                   footer
                     ul.actions
                       li
                         a(href="/post/#{post.permalink}").button.icon.fa-file.text Post completo
-                      li
-                        a(href="").button.alt.icon.fa-comment 33 comentários                  
+                      //li
+                      //  a(href="").button.alt.icon.fa-comment 33 comentários                  
           div.row
             div.12u
               script(type='text/javascript').
@@ -45,8 +44,7 @@ block mainContent
                       section.box.animated.fadeIn
                         a(href="/post/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured 
                         header
-                          h3= post.title
-                          p Posted at
+                          h3= post.title                          
                         footer
                           a(href="/post/#{post.permalink}").buttom.alt Post Completo
           
