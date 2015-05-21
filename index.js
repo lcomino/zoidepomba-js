@@ -32,20 +32,25 @@ app.set('view options', {
 });
 
 app.get('/', function(req, res){
-  Posts(res, 9, 0);
+  Posts(res, req, 9, 0);
 });
 
-function Posts(res, limit, skip){
+function Posts(res, req, limit, skip){
   "use strict";
   Post.find({}, function(err, posts){
 
     var ultimopost = [],
         ultimosposts = [],
         outrosposts = [],
-        numeroPosts = 0;
+        numeroPosts = 0,
+        url = "";
+
+    url = req.protocol + '://' + req.get('host') + req.originalUrl;
 
     if(posts.length === 0)
       posts = [Post];
+
+
 
     ultimopost = posts.slice(0,1);
     ultimosposts = posts.slice(1,3);
@@ -53,7 +58,7 @@ function Posts(res, limit, skip){
 
     Post.count().exec(function(err, count){
         numeroPosts = count;
-        res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : (skip/9)+1 });
+        res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : (skip/9)+1, url : url});
     });
 
   }).sort({'_id': -1}).limit(limit).skip(skip);
@@ -63,7 +68,7 @@ function Posts(res, limit, skip){
 app.get('/page/:pagenumber', function(req, res){
   var page = req.params.pagenumber;
   page--;
-  Posts(res, 9, page * 9);
+  Posts(res, req, 9, page * 9);
 });
 
 app.get('/post-edit', function(req, res){
@@ -127,7 +132,8 @@ app.get('/post/:permalink', function(req, res){
       excerpt : '',
       tags : '',
       categories : '',
-      image : ''
+      image : '',
+      url : ''
   };
 
   if(id !== ""){
@@ -145,6 +151,7 @@ app.get('/post/:permalink', function(req, res){
           postData.tags = p.tags.join(',');
           postData.categories = p.categories.join(',');
           postData.image = p.image;
+          postData.url = req.protocol + '://' + req.get('host') + req.originalUrl;
 
           res.render('post', postData);
         }else{
