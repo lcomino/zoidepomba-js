@@ -3,9 +3,9 @@ block bannerContent
   section#banner(style="background:url('#{ultimopost.image}')")
     header						
       h2
-        a(href="/post/#{ultimopost.permalink}")= ultimopost.title
+        a(href="/#{ultimopost.permalink}")= ultimopost.title
       p
-        a(href="/post/#{ultimopost.permalink}")= ultimopost.excerpt
+        a(href="/#{ultimopost.permalink}")= ultimopost.excerpt
 block mainContent
   div.container
     div.row
@@ -15,14 +15,14 @@ block mainContent
             each post in ultimosposts    
               div.6u
                 section.box.animated.fadeIn                  
-                  a(href="/post/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured                  
+                  a(href="/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured                  
                   header
                     h3= post.title                    
                     p= post.excerpt
                   footer
                     ul.actions
                       li
-                        a(href="/post/#{post.permalink}").button.icon.fa-file.text Post completo
+                        a(href="/#{post.permalink}").button.icon.fa-file.text Post completo
                       //li
                       //  a(href="").button.alt.icon.fa-comment 33 comentários                  
           div.row
@@ -42,11 +42,11 @@ block mainContent
                   each post in outrosposts
                     div.4u
                       section.box.animated.fadeIn
-                        a(href="/post/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured 
+                        a(href="/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured 
                         header
                           h3= post.title                          
                         footer
-                          a(href="/post/#{post.permalink}").buttom.alt Post Completo
+                          a(href="/#{post.permalink}").buttom.alt Post Completo
           
           div.row
             div.12u

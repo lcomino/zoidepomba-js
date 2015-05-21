@@ -35,6 +35,47 @@ app.get('/', function(req, res){
   Posts(res, req, 9, 0);
 });
 
+app.get('/:permalink', function(req, res){
+  var id = req.params.permalink;
+
+  var postData = {
+      title : '',
+      permalink : '',
+      content: '',
+      excerpt : '',
+      tags : '',
+      categories : '',
+      image : '',
+      url : ''
+  };
+
+  if(id !== ""){
+      Post.find({permalink : id}, function(err, post){
+          if(err)throw err;
+
+          if(post.length > 0){
+
+          var p = post[0];
+
+          postData.title = p.title;
+          postData.permalink = p.permalink;
+          postData.content = marked(p.content);
+          postData.excerpt = p.excerpt;
+          postData.tags = p.tags.join(',');
+          postData.categories = p.categories.join(',');
+          postData.image = p.image;
+          postData.url = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+          res.render('post', postData);
+        }else{
+          res.render('404');
+        }
+      });
+  }else{
+    res.render('404');
+  }
+});
+
 function Posts(res, req, limit, skip){
   "use strict";
   Post.find({}, function(err, posts){
