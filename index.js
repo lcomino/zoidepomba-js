@@ -32,7 +32,7 @@ app.set('view options', {
 });
 
 app.get('/', function(req, res){
-  Posts(res, req, 9, 0);
+  Posts(res, req, 8, 0);
 });
 
 app.get('/:permalink', function(req, res){
@@ -93,13 +93,13 @@ function Posts(res, req, limit, skip){
 
 
 
-    ultimopost = posts.slice(0,1);
-    ultimosposts = posts.slice(1,3);
-    outrosposts = posts.slice(3);
+    //ultimopost = posts.slice(0,1);
+    ultimosposts = posts.slice(0,2);
+    outrosposts = posts.slice(2);
 
     Post.count().exec(function(err, count){
         numeroPosts = count;
-        res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : (skip/9)+1, url : url});
+        res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : (skip/8)+1, url : url});
     });
 
   }).sort({'_id': -1}).limit(limit).skip(skip);
@@ -109,7 +109,7 @@ function Posts(res, req, limit, skip){
 app.get('/page/:pagenumber', function(req, res){
   var page = req.params.pagenumber;
   page--;
-  Posts(res, req, 9, page * 9);
+  Posts(res, req, 8, page * 8);
 });
 
 app.get('/post-edit', function(req, res){
