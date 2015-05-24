@@ -5,9 +5,10 @@ block mainContent
       //sidebar
       div.row        
         div.8u.important(collapse)
-          article.box.post
-            a(href="").image.featured
-              img(src=image, alt=title)
+          article.box.post          
+            if(image)
+              a(href="").image.featured              
+                img(src=image, alt=title)              
             header
               h2=title
               =excerpt
