@@ -14,12 +14,12 @@ html(lang="pt-br")
 		meta(property="og:image", content="#{image}")
 				
 		link(rel="stylesheet", href="/css/animate.css")
-		
+		script(src='/js/buscar.js')
 		script(src='/js/jquery.min.js')
 		script(src='/js/jquery.dropotron.min.js')
 		script(src='/js/skel.min.js')
 		script(src='/js/skel-layers.min.js')
-		script(src='/js/init.js')
+		script(src='/js/init.js')		
 		
 		noscript
 			link(rel='stylesheet', href='/css/skel.css')
@@ -49,15 +49,18 @@ body.homepage
 						li
 							a(href="/categoria/lol") LOL
 						li
-							a(href="/categoria/nsfw") NSFW
-						li
-							a(href="/assine") ASSINE
+							a(href="/categoria/nsfw") NSFW						
 						li
 							a(href="http://www.vitrinepix.com.br/zoidepomba", target='_blank', alt='Camisetas ') CAMISETAS
 						li
 							a(href="/contato") CONTATO
-						//li
-						//	input(type="text", name="buscar", placeholder="Busque aqui...")
+						li
+							form(method="get", action="/buscar")
+								div.input-group
+									div.input
+										input(type="text", name="buscar", placeholder="Busque aqui...", id="input-buscar")
+									div.btn
+										input(type="submit", name="btnBuscar", value="Buscar", id="btn-buscar", onclick="return false;")
 				
 				//block bannerContent
 
@@ -118,10 +121,10 @@ body.homepage
 								li Baseado em um dos temas 
 									a(href='http://html5up.net') HTML5 UP
 								li Totalmente concebido com JS ♥
-	script(type="text/javascript").
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');		
-		ga('create', 'UA-6410183-32', 'auto');
-		ga('send', 'pageview');
+	//script(type="text/javascript").
+	//	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	//	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	//	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	//	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');		
+	//	ga('create', 'UA-6410183-32', 'auto');
+	//	ga('send', 'pageview');
