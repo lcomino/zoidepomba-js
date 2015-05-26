@@ -238,7 +238,16 @@ module.exports = function(app) {
                 postData.image = p.image;
                 postData.url = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-                res.render('post', postData);
+                Post.count().exec(function(err, count){
+                    numeroPosts = count;
+                  Post.find({permalink : {"$ne": id}}, function(err, posts){
+                    if(err) throw err;
+
+                    res.render('post', {post : postData, outrosPosts : posts});
+                  }).sort({'_id': -1}).limit(4).skip(Math.floor(Math.random() * numeroPosts - 1));
+                });
+
+
               }else{
                 res.render('404');
               }

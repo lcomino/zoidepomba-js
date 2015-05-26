@@ -6,18 +6,35 @@ block mainContent
       div.row        
         div.8u.important(collapse)
           article.box.post          
-            if(image)
+            if(post.image)
               a(href="").image.featured              
-                img(src=image, alt=title)              
+                img(src=post.image, alt=post.title)              
             header
-              h2=title
-              =excerpt
-            !=content
+              h2=post.title
+              =post.excerpt
+            !=post.content
+          div.row
+            div.12u          
+              header
+                h3 Veja mais aqui
+            
+            each post in outrosPosts
+              div.6u
+                section.box.animated.fadeIn
+                  a(href="/#{post.permalink}", style="background: url('#{post.image}') no-repeat center center / 100% auto;").image.featured 
+                  header
+                    h3= post.title                          
+                  footer
+                    a(href="/#{post.permalink}").buttom.alt Post Completo
+              
               
         div.4u
           section.box.sidebar            
             header
               h3 Parcerias e jabas
+            
+            a(href='http://www.fudas.com.br/visitas/162/')
+              img(src='http://www.fudas.com.br/arquivos/selos/selosFudas-e5d93d84715943b28b33a69236736857.jpg')
             a(href="http://www.vitrinepix.com.br/zoidepomba", target="_blank")
               img(src="http://ad.zoidepomba.com.br/banner-novas-camisetas.gif", alt="Camisetas Zoidepomba")
             a(href="http://www.linkirado.net/", target="_blank")
