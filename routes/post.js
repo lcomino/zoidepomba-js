@@ -26,7 +26,7 @@ module.exports = function(app) {
 
           Post.count().exec(function(err, count){
               numeroPosts = count;
-              res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : (skip/8)+1, url : url});
+              res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, totalPages : numeroPosts/limit, paginaAtual : (skip/8)+1, url : url, post : Post});
           });
 
         }).sort({'_id': -1}).limit(limit).skip(skip);
