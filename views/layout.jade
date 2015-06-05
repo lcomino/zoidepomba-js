@@ -1,18 +1,18 @@
 doctype html
 html(lang="pt-br")
 	head
-		title Zoidepomba.com.br - #{title}
+		title Zoidepomba.com.br - #{post.title}
 		meta(http-equiv='content-type',content='text/html; charset=utf-8')
-		meta(name='description', content='#{excerpt}')
-		meta(name='keywords',content='')
+		meta(name='description', content='#{post.excerpt}')
+		meta(name='keywords',content='#{post.tags}')
 		meta(name="google-site-verification",content="U5r7abgjr8OKDoCoGD9XpR1mdIK9Il41wtAIvi9tA8M")
 		
 		meta(property="og:type" content="article")
-		meta(property="og:title", content="#{title}")		
+		meta(property="og:title", content="#{post.title}")		
 		meta(property="og:url", content='#{url}')
-		meta(property="og:site_name", content="Zoidepomba.com.br - #{title}")
-		meta(property="og:description", content="#{excerpt}")
-		meta(property="og:image", content="#{image}")
+		meta(property="og:site_name", content="Zoidepomba.com.br - #{post.title}")
+		meta(property="og:description", content="#{post.excerpt}")
+		meta(property="og:image", content="#{post.image}")
 				
 		link(rel="stylesheet", href="/css/animate.css")
 		script(src='/js/buscar.js')
