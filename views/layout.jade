@@ -37,7 +37,7 @@ body.homepage
 								a(href="/")
 									img(src="/images/logo-horizontal.png", alt="Zoidepomba - Voltar página inicial")
 						.6u
-							a.propaganda(href='http://www.vitrinepix.com.br/zoidepomba/', target='_blank', data-banner-posicao='banner-anuncio-topo', data-cliente='CamisetasZoidepomba', title='Novas camisetas do Zoidepomba, compre já a sua!!')
+							a.propaganda.banner-anuncio(href='http://www.vitrinepix.com.br/zoidepomba/', target='_blank', data-banner-posicao='banner-anuncio-topo', data-cliente='CamisetasZoidepomba', title='Novas camisetas do Zoidepomba, compre já a sua!!')
 								img(alt='Novas camisetas do Zoidepomba, compre já a sua!!', title='Novas camisetas do Zoidepomba, compre já a sua!!', src='http://ad.zoidepomba.com.br/banner_728_novas-camisetas.gif')
 				nav#nav
 					ul
@@ -124,10 +124,24 @@ body.homepage
 								li Baseado em um dos temas 
 									a(href='http://html5up.net') HTML5 UP
 								li Totalmente concebido com JS ♥
+
 	script(type="text/javascript").
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');		
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-6410183-32', 'auto');
 		ga('send', 'pageview');
+		var bannersAnuncio = document.querySelectorAll('.banner-anuncio');		
+		for(var i = 0, j = bannersAnuncio.length; i < j; i++){
+		    bannersAnuncio[i].addEventListener('click', function(e){
+		        ga('send', 'event', {
+		          'eventCategory': this.getAttribute('data-banner-posicao'),
+		          'eventAction': 'Click',
+		          'eventLabel': this.getAttribute('data-cliente')
+		        });
+		    });
+		}
+
+
+	

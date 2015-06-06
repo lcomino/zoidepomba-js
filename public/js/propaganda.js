@@ -1,13 +1,15 @@
-"use strict";
+(function(){
+	'use strict';
+	var bannersAnuncio = document.getElementsByClassName('banner-anuncio');
 
-var prop = document.querySelectorAll('.anuncio-topo');
-var prop = prop[0];
+	for(var i = 0, j = bannersAnuncio.length; i < j; i++){
+	    bannersAnuncio[i].addEventListener('click', function(e){
+	        ga('send', 'event', {
+	          'eventCategory': this.getAttribute('data-banner-posicao'),
+	          'eventAction': 'Click',
+	          'eventLabel': this.getAttribute('data-cliente')
+	        });
+	    });
+	}
+})();
 
-var anunciantes = {
-    'Motorando' : {
-        'link' : 'http://www.motorando.com.br',
-        'title' : 'Motorando Classificados Grátis de Veículos'
-    }
-}
-
-console.log(anunciantes);
