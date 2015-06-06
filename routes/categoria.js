@@ -30,7 +30,7 @@ module.exports = function(app) {
       ultimosposts = posts.slice(0,2);
       outrosposts = posts.slice(2);
 
-      res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, url : url});
+      res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, url : url, post : Post});
     });
   });
 };

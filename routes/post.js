@@ -55,7 +55,7 @@ module.exports = function(app) {
             categories : '',
             image : ''
         };
-        res.render('post-edit', postData);
+        res.render('post-edit', {post : postData});
       });
 
       app.get('/:permalink/edit', function(req, res){
@@ -84,7 +84,7 @@ module.exports = function(app) {
                   postData.tags = p.tags.join(',');
                   postData.categories = p.categories.join(',');
                   postData.image = p.image;
-                  res.render('post-edit', postData);
+                  res.render('post-edit', {post : postData});
                 }else{
                   res.render('404');
                 }
@@ -175,8 +175,7 @@ module.exports = function(app) {
           words.forEach(function(word){
             regex.push(new RegExp(word));
           });
-          console.log(regex);
-
+          
           var query = Post.find({});
           query.or({'permalink' : { $in : regex}});
           query.or({'tags' : { $in : regex}});
@@ -193,7 +192,7 @@ module.exports = function(app) {
 
             if(posts.length === 0){
               posts = [Post];
-              res.render('404');
+              res.render('404', {post : Post});
             }
 
 
@@ -201,7 +200,7 @@ module.exports = function(app) {
             ultimosposts = posts.slice(0,2);
             outrosposts = posts.slice(2);
 
-            res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, url : url});
+            res.render('home', {ultimopost : ultimopost[0], ultimosposts : ultimosposts, outrosposts : outrosposts, url : url, post : Post});
           });
 
       });
